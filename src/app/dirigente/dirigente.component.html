@@ -1,0 +1,162 @@
+<div class="container pb-5">
+  <button class="btn mt-4" routerLink="">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+
+  <h3 class="mt-5">Inserisci Paziente:</h3>
+  <div class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
+    <input [(ngModel)]="firstName" placeholder="First Name" />
+    <input [(ngModel)]="lastName" placeholder="Last Name" />
+    <input [(ngModel)]="codiceFiscale" placeholder="Codice Fiscale" />
+    <input [(ngModel)]="email" placeholder="Email" />
+    <a href="/dirigente">
+      <button (click)="bottonePaziente()" class="btn">Submit</button>
+    </a>
+
+  </div>
+
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">action</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Codice Fiscale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paziente of pazienti">
+        <td>
+          <a href="/dirigente">
+            <button class="btn" (click)="bottoneDeletePaziente(paziente.pazienteId)"><i class="fa-solid fa-trash"></i></button>
+          </a>
+
+        </td>
+        <td>
+          {{ paziente.firstName }}
+        </td>
+        <td>
+          {{ paziente.lastName}}
+        </td>
+        <td>
+          {{ paziente.email }}
+        </td>
+        <td>
+          {{ paziente.codiceFiscale }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+  <h3 class="mt-5">Inserisci Medico:</h3>
+  <div class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
+    <input [(ngModel)]="firstName" placeholder="First Name" />
+    <input [(ngModel)]="lastName" placeholder="Last Name" />
+    <select [(ngModel)]="active" placeholder="Disponibilita">
+      <option value="">...</option>
+      <option value="true">disponibile</option>
+      <option value="false">Non disponibile</option>
+    </select>
+    <input [(ngModel)]="email" placeholder="Email" />
+
+    <a href="/dirigente">
+      <button (click)="bottoneMedico()" class="btn">Submit</button>
+    </a>
+
+  </div>
+
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">action</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Disponibilità</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medico of medici">
+        <td>
+          <a href="/dirigente">
+            <button class="btn" (click)="bottoneDeleteMedico(medico.medicoId)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </a>
+
+        </td>
+        <td>
+          {{ medico.firstName }}
+        </td>
+        <td>
+          {{ medico.lastName}}
+        </td>
+        <td>
+          {{ medico.email }}
+        </td>
+        <td>
+          {{ medico.active }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+  <h3 class="mt-5">Inserisci Prestazione:</h3>
+  <div class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
+    <input [(ngModel)]="tipologia" placeholder="tipologia"/>
+    <select [(ngModel)]="medicoId" name="" id="">
+      <option *ngFor="let medico of medici" value="{{medico.medicoId}}">
+        {{ medico.firstName! }} {{ medico.lastName! }}
+      </option>
+    </select>
+
+    <a href="/dirigente">
+      <button (click)="bottonePrestazione()" class="btn">Submit</button>
+    </a>
+
+
+  </div>
+
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">action</th>
+        <!-- <th scope="col">id</th> -->
+        <th scope="col">tipologia</th>
+        <th scope="col">medico id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prestazione of prestazioni">
+        <td>
+          <a href="/dirigente">
+            <button class="btn" (click)="bottoneDeletePrestazione(prestazione.prestazioneId)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </a>
+
+        </td>
+        <!-- <td>
+          {{ prestazione.prestazioneId }}
+        </td> -->
+        <td>
+          {{ prestazione.tipologia }}
+        </td>
+        <td>
+          {{ prestazione.medico.firstName! }} {{ prestazione.medico.lastName! }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
